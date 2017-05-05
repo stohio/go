@@ -1,27 +1,26 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"io"
 	"html"
+	"io"
 	"log"
 	"net/http"
-	"strings"
-	"encoding/json"
 	"os"
+	"strings"
 	//"bytes"
-
 )
 
 import "github.com/cdipaolo/sentiment"
 
 func main() {
 	// first time setup stuff
-	
+
 	// create our json file
 	path := "response.json"
-	deleteFile(path)
-	createFile(path)
+	DeleteFile(path)
+	CreateFile(path)
 
 	// create our sentiment analysis model
 	model, err := sentiment.Restore()
@@ -33,7 +32,7 @@ func main() {
 
 	// default router which handles our GET requests
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		query := html.EscapeString(r.URL.Path) 
+		query := html.EscapeString(r.URL.Path)
 
 		// clean and trim the query
 		t := strings.Replace(query, "/", "", -1)
@@ -41,15 +40,15 @@ func main() {
 		// ignore favicon reqeusts (only happens with browser - because this is an MVP demo)
 		if strings.TrimRight(t, "\n") != "favicon.ico" {
 			// analyze our query
-			analysis := model.SentimentAnalysis(t, sentiment.English) 
+			analysis := model.SentimentAnalysis(t, sentiment.English)
 			// print the overall score for our convenience
-			fmt.Print(analysis.Score);
+			fmt.Print(analysis.Score)
 			// return all data to client in form of a json
 			data, err := json.Marshal(analysis)
 			fmt.Print(err)
 			s := string(data)
-			
-			writeFile(path, s)
+
+			WriteFile(path, s)
 
 			json.NewEncoder(w).Encode(analysis)
 		}
@@ -59,7 +58,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
-func createFile(path string) {
+func CreateFile(path string) {
 	// check to see if file exists
 	var _, err = os.Stat(path)
 
@@ -78,7 +77,7 @@ func checkError(err error) {
 	}
 }
 
-func writeFile(path string, data string) {
+func WriteFile(path string, data string) {
 	// open file using READ & WRITE permission
 	var file, err = os.OpenFile(path, os.O_RDWR, 0644)
 	checkError(err)
@@ -114,7 +113,7 @@ func readFile(path string) {
 	checkError(err)
 }
 
-func deleteFile(path string) {
+func DeleteFile(path string) {
 	// delete file
 	os.Remove(path)
 }
