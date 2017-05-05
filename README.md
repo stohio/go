@@ -1,7 +1,8 @@
-# go
-Introduction to Golang
-
-It's awesome! 
+# Intro to Golang
+## Why us? 
+Our names are Steven Gates (Junior, Applied Math & CS) and Cameron Sinko (Freshman, Computer Engineering). In January, we went to a hackathon called BrickHacks in Rochester, New York. There, we created Software Lab because we were planning to host a hackathon in our hometown in Akron, Ohio. Turns out, other hackathons had the same problem we were having so we got funded by a group called EXL Center at The University of Akron to travel around and help hackathons. 
+## Why Go? 
+Go is the hip new language. It has all the ease of use of a language such as Python, but still can give you nitty gritty control that C++ gives. It is especially optimized for use as a server side programming language - that is why Software Lab is built in Go! 
 
 ## Useful Commands
 - go install
