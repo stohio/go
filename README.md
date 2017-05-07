@@ -32,7 +32,7 @@ Go is the hip new language. It has all the ease of use of a language such as Pyt
 NLP api server, simple
 Make a JSON file, put stuff in it, restful api, return them a JSON
 
-Copy paste this into your Chrome browser to test out the sentiment analysis API! 
+Copy paste this into your Chrome browser to test out the sentiment analysis API(as is)! 
 ```
-http://localhost:8081/?q=your+mother+is+an+awful+lady
+http://localhost:8081/your mother is an awful lady
 ```
