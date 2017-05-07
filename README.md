@@ -33,4 +33,6 @@ NLP api server, simple
 Make a JSON file, put stuff in it, restful api, return them a JSON
 
 Copy paste this into your Chrome browser to test out the sentiment analysis API! 
+```
 http://localhost:8081/?q=your+mother+is+an+awful+lady
+```
